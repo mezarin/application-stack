@@ -13,9 +13,9 @@ starterProjects:
 components:
   - name: devruntime
     container:
-      # this custom image source can be found at:
-      # https://github.com/OpenLiberty/application-stack/tree/master/stackimage
-      image: {{.OL_APP_STACK_IMAGE}}
+      # In the original upstream of this devfile, the image used is openliberty/application-stack:<x.y.z>, which is built from source at:
+      #   https://github.com/OpenLiberty/application-stack/tree/master/stackimage
+      image: {{.STACK_IMAGE}}
       memoryLimit: 1512Mi
       mountSources: true
       endpoints:
@@ -38,7 +38,7 @@ commands:
                                                                elif [[ -d /projects/target/liberty/wlp && ! -e /projects/.liberty-mv ]];
                                                                  then echo "STACK WARNING - LIBERTY RUNTIME WAS LOADED FROM HOST";
                                                                fi
-                                                            && mvn -Dliberty.runtime.version={{.OL_DRIVER_VERSION}} package
+                                                            && mvn -Dliberty.runtime.version={{.OL_RUNTIME_VERSION}} package
                                                             && touch ./.disable-bld-cmd;
                    fi
       workingDir: /projects
@@ -49,7 +49,7 @@ commands:
   - id: run
     exec:
       component: devruntime 
-      commandLine: mvn -Dliberty.runtime.version={{.OL_DRIVER_VERSION}} -Ddebug=false -DhotTests=true -DcompileWait=3 liberty:dev
+      commandLine: mvn -Dliberty.runtime.version={{.OL_RUNTIME_VERSION}} -Ddebug=false -DhotTests=true -DcompileWait=3 liberty:dev
       workingDir: /projects
       hotReloadCapable: true
       group:
@@ -58,7 +58,7 @@ commands:
   - id: run-test-off
     exec:
       component: devruntime
-      commandLine: mvn -Dliberty.runtime.version={{.OL_DRIVER_VERSION}} -Ddebug=false liberty:dev
+      commandLine: mvn -Dliberty.runtime.version={{.OL_RUNTIME_VERSION}} -Ddebug=false liberty:dev
       workingDir: /projects
       hotReloadCapable: true
       group:
@@ -67,7 +67,7 @@ commands:
   - id: debug
     exec:
       component: devruntime 
-      commandLine: mvn -Dliberty.runtime.version={{.OL_DRIVER_VERSION}} -DdebugPort=${DEBUG_PORT} liberty:dev -Dliberty.env.WLP_DEBUG_REMOTE=y
+      commandLine: mvn -Dliberty.runtime.version={{.OL_RUNTIME_VERSION}} -DdebugPort=${DEBUG_PORT} liberty:dev -Dliberty.env.WLP_DEBUG_REMOTE=y
       workingDir: /projects
       hotReloadCapable: true
       group:

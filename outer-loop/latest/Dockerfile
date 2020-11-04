@@ -1,5 +1,5 @@
 # Step 1: Build the user's application
-FROM openliberty/application-stack:0.3 as compile
+FROM emezari/java-openliberty-20009-j14-ubi:0.0.1 as compile
 
 # Make a well known place for shared library jars separate from the rest of the <server> contents (to help with caching)
 RUN mkdir /work/configlibdir \
@@ -28,7 +28,7 @@ RUN cd /work/outer-loop-app/target/liberty/wlp/usr/servers && \
     if [ -d ../shared ]; then mv ../shared/* /work/shared/; fi
 
 # Step 2: Package Open Liberty image
-FROM openliberty/open-liberty:20.0.0.10-kernel-java11-openj9-ubi
+FROM openliberty/open-liberty:20.0.0.9-kernel-java14-openj9-ubi
 
 #2a) copy any resources 
 COPY --from=compile --chown=1001:0 /work/shared /opt/ol/wlp/usr/shared/

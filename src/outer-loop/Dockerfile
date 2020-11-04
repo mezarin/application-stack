@@ -1,5 +1,5 @@
 # Step 1: Build the user's application
-FROM {{.OL_APP_STACK_IMAGE}} as compile
+FROM {{.STACK_IMAGE}} as compile
 
 # Make a well known place for shared library jars separate from the rest of the <server> contents (to help with caching)
 RUN mkdir /work/configlibdir \

@@ -19,7 +19,9 @@
 
 A devfile-based application stack for Open Liberty
 
-# Open Liberty Application Stack
+# Customized Open Liberty Application Stack
+
+Customization instrutions can be found [here](https://github.com/OpenLiberty/application-stack/wiki/Open-Liberty-Application-Stack-Customization)
 
 The Open Liberty application stack provides a consistent way of developing microservices based upon the [Jakarta EE](https://jakarta.ee/) and [Eclipse MicroProfile](https://microprofile.io) specifications. This stack lets you use [Maven](https://maven.apache.org) to develop applications for [Open Liberty](https://openliberty.io) runtime, that is running on OpenJDK with container-optimizations in OpenJ9.
 
