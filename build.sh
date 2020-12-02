@@ -8,27 +8,27 @@
 #
 # Base image used to build stack image
 #
-BASE_OS_IMAGE="${BASE_OS_IMAGE:-adoptopenjdk/openjdk11-openj9:ubi}"
+BASE_OS_IMAGE="${BASE_OS_IMAGE:-adoptopenjdk/openjdk14-openj9:ubi}"
 
 #
 # Version of Open Liberty runtime to use within both inner and outer loops
 #
-OL_RUNTIME_VERSION="${OL_RUNTIME_VERSION:-20.0.0.12}"
+OL_RUNTIME_VERSION="${OL_RUNTIME_VERSION:-20.0.0.11}"
 
 #
 # The Open Liberty base image used in the final stage of the outer loop Dockerfile used to build your application image from
 #
-OL_UBI_IMAGE="${OL_UBI_IMAGE:-openliberty/open-liberty:20.0.0.12-kernel-slim-java11-openj9-ubi}"
+OL_UBI_IMAGE="${OL_UBI_IMAGE:-openliberty/open-liberty:20.0.0.11-kernel-slim-java14-openj9-ubi}"
 
 #
 # The name and tag of the "stack image you will build.  This will used to create your inner loop development containers, and also as the base image for the first stage of your outer loop image build.
 #
-STACK_IMAGE="${STACK_IMAGE:-openliberty/application-stack:0.4}"
+STACK_IMAGE="${STACK_IMAGE:-emezari/application-stack-ol200011-java14:0.0.1}"
 
 #
 # URL at which your outer loop Dockerfile is hosted
 #
-DEVFILE_DOCKERFILE_LOC="${DEVFILE_DOCKERFILE_LOC:-https://github.com/OpenLiberty/application-stack/releases/download/outer-loop-0.4.0/Dockerfile}"
+DEVFILE_DOCKERFILE_LOC="${DEVFILE_DOCKERFILE_LOC:-https://github.com/mezarin/application-stack/releases/download/custom-ol200011-java14/Dockerfile}"
 
 #
 # URL at which your outer loop deploy YAML template is hosted
